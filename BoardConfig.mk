@@ -10,6 +10,9 @@ DEVICE_PATH := device/xiaomi/phoenix
 # Display density
 TARGET_SCREEN_DENSITY := 440
 
+# ANXCamera
+-include vendor/aeonax/ANXCamera/BoardConfigAnx.mk
+
 # Inherit from sm6150-common
 -include device/xiaomi/sm6150-common/BoardConfigCommon.mk
 
