@@ -17,6 +17,10 @@ vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
 vendor/lib/libacdbrtac.so
 
+# Surfaceflinger
+lib64/libdolphin.so
+lib/libdolphin.so
+
 # ADSP Modules
 vendor/lib/rfsa/adsp/capi_v2_aptX_CLHDAD_Encoder.so
 vendor/lib/rfsa/adsp/libarcsoft_dualcam_refocus_skel.so
