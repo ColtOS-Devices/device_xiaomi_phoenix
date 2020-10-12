@@ -19,8 +19,9 @@ PRODUCT_MANUFACTURER := Xiaomi
 #Bootanimation size
 TARGET_BOOT_ANIMATION_RES := 1080x2340
 
-#Gapps & Extra stuff
-TARGET_GAPPS_ARCH := arm64
+#Tags
+COLT_BUILD_TYPE := Official
+COLT_DEVICE_MAINTAINER := chiranth
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
