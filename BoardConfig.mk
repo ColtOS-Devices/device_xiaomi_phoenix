@@ -37,7 +37,7 @@ ODM_MANIFEST_PHOENIX_FILES := $(DEVICE_PATH)/manifest_phoenix.xml
 # Kernel
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_RAMDISK_OFFSET := 0x02000000
-TARGET_KERNEL_CONFIG := vendor/hardrock_defconfig
+TARGET_KERNEL_CONFIG := vendor/phoenix_defconfig
 
 # Platform
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno618
