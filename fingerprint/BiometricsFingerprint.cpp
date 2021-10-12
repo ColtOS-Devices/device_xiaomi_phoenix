@@ -22,6 +22,9 @@
 #include <hardware/hardware.h>
 #include "BiometricsFingerprint.h"
 
+#include <android-base/strings.h>
+#include <cutils/properties.h>
+
 #include <inttypes.h>
 #include <unistd.h>
 
@@ -191,12 +194,18 @@ Return<RequestStatus> BiometricsFingerprint::setActiveGroup(uint32_t gid,
         ALOGE("Bad path length: %zd", storePath.size());
         return RequestStatus::SYS_EINVAL;
     }
-    if (access(storePath.c_str(), W_OK)) {
+    std::string mutableStorePath = storePath;
+    if (android::base::StartsWith(mutableStorePath, "/data/system/users/")) {
+        mutableStorePath = "/data/vendor_de/";
+        mutableStorePath +=
+            static_cast<std::string>(storePath).substr(strlen("/data/system/users/"));
+    }
+    if (access(mutableStorePath.c_str(), W_OK)) {
         return RequestStatus::SYS_EINVAL;
     }
 
     return ErrorFilter(mDevice->set_active_group(mDevice, gid,
-                                                    storePath.c_str()));
+                                                    mutableStorePath.c_str()));
 }
 
 Return<RequestStatus> BiometricsFingerprint::authenticate(uint64_t operationId,
@@ -209,6 +218,10 @@ IBiometricsFingerprint* BiometricsFingerprint::getInstance() {
       sInstance = new BiometricsFingerprint();
     }
     return sInstance;
+}
+
+void setFpVendorProp(const char* fp_vendor) {
+    property_set("persist.vendor.sys.fp.vendor", fp_vendor);
 }
 
 fingerprint_device_t* getDeviceForVendor(const char *class_name) {
@@ -261,9 +274,11 @@ fingerprint_device_t* getFingerprintDevice() {
             ALOGE("Failed to load %s fingerprint module", vendor.c_str());
             continue;
         }
+        setFpVendorProp(vendor.c_str());
         return fp_device;
     }
 
+    setFpVendorProp("none");
     return nullptr;
 }
 

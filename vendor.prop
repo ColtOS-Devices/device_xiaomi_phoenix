@@ -95,7 +95,6 @@ vendor.audio.volume.headset.gain.depcal=true
 persist.vendor.audio_hal.dsp_bit_width_enforce_mode=24
 
 # Bluetooth
-persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
 persist.bluetooth.a2dp_offload.disabled=false
 persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac-aptxadaptive
 persist.vendor.qcom.bluetooth.enable.splita2dp=true
@@ -165,6 +164,10 @@ vendor.display.enable_optimize_refresh=1
 vendor.gralloc.disable_ubwc=0
 persist.sys.sf.color_mode=0
 persist.sys.sf.native_mode=0
+ro.vendor.display.ad=1
+ro.vendor.display.ad.sdr_calib_data=/vendor/etc/sdr_config.cfg
+ro.vendor.display.ad.hdr_calib_data=/vendor/etc/hdr_config.cfg
+ro.gfx.driver.1=com.qualcomm.qti.gpudrivers.sm6150.api30
 
 # Keystore
 ro.hardware.keystore_desede=true
